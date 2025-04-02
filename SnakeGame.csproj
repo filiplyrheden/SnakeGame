@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.6" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.6" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.6" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.6" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.2.6">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Body.png" />
+    <Resource Include="Assets\Body.png" />
+    <None Remove="Assets\DeadBody.png" />
+    <Resource Include="Assets\DeadBody.png" />
+    <None Remove="Assets\DeadHead.png" />
+    <Resource Include="Assets\DeadHead.png" />
+    <None Remove="Assets\DroidSansMono.ttf" />
+    <Resource Include="Assets\DroidSansMono.ttf" />
+    <None Remove="Assets\Empty.png" />
+    <Resource Include="Assets\Empty.png" />
+    <None Remove="Assets\Food.png" />
+    <Resource Include="Assets\Food.png" />
+    <None Remove="Assets\Head.png" />
+    <Resource Include="Assets\Head.png" />
+    <None Remove="Assets\icon.ico" />
+    <Resource Include="Assets\icon.ico" />
+  </ItemGroup>
+</Project>
