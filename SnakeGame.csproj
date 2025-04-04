@@ -42,4 +42,8 @@
     <None Remove="Assets\icon.ico" />
     <Resource Include="Assets\icon.ico" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
 </Project>
