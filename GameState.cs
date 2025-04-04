@@ -83,6 +83,48 @@ public class GameState
         Dir = dir;
     }
 
+    private bool OutsideGrid(Position pos)
+    {
+        return pos.Row < 0 || pos.Row >= Rows || pos.Col < 0 || pos.Col >= Cols;
+    }
+
+    private GridValue WillHit(Position NewHeadPos)
+    {
+        if (OutsideGrid(NewHeadPos))
+        {
+            return GridValue.Outside;
+        }
+
+        if (NewHeadPos == TailPosition())
+        {
+            return GridValue.Empty;
+        }
+        
+        return Grid[NewHeadPos.Row, NewHeadPos.Col];
+    }
+
+    public void Move()
+    {
+        Position NewHeadPos = HeadPosition().Translate(Dir);
+        GridValue hit = WillHit(NewHeadPos);
+
+        if (hit == GridValue.Outside || hit == GridValue.Snake)
+        {
+            GameOver = true;
+        }
+        else if (hit == GridValue.Empty)
+        {
+            RemoveTail();
+            AddHead(NewHeadPos);
+        }
+        else if (hit == GridValue.Food)
+        {
+            AddHead(NewHeadPos);
+            Score++;
+            AddFood();
+        }
+    }
+
     private IEnumerable<Position> EmptyPositions()
     {
         for (int r = 0; r < Rows; r++)
