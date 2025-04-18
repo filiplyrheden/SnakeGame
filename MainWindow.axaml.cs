@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -26,16 +27,46 @@ public partial class MainWindow : Window
         gameState = new GameState(rows, cols);
     }
 
-    private void Window_Opened(object? sender, EventArgs e)
+    private async void Window_Opened(object? sender, EventArgs e)
     {
+        this.Focus();
         Draw();
+        await GameLoop();
     }
 
     private void Window_KeyDown(object? sender, KeyEventArgs e)
     {
-        // Handle arrow keys here
+        if (gameState.GameOver)
+        {
+            return;
+        }
+
+        switch (e.Key)      
+        {   
+           case Key.Left:
+               gameState.ChangeDirection(Direction.Left);
+               break;
+           case Key.Right:
+               gameState.ChangeDirection(Direction.Right);
+               break;
+           case Key.Up:
+               gameState.ChangeDirection(Direction.Up);
+               break;
+           case Key.Down:
+               gameState.ChangeDirection(Direction.Down);
+               break;
+        }
     }
 
+    private async Task GameLoop()
+    {
+        while (!gameState.GameOver)
+        {
+            await Task.Delay(100);
+            gameState.Move();
+            Draw();
+        }
+    }
     private Image[,] SetupGrid()
     {
         Image[,] images = new Image[rows, cols];
