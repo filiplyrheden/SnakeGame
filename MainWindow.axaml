@@ -9,7 +9,9 @@
         Foreground="{DynamicResource TextColor}"
         FontFamily="{DynamicResource MainFont}"
         WindowStartupLocation="CenterScreen"
-        Icon="Assets/icon.ico">
+        Icon="Assets/icon.ico"
+        Opened="Window_Opened"
+        KeyDown="Window_KeyDown">
 
         <Grid>
                 <Grid.RowDefinitions>
@@ -35,7 +37,9 @@
                         <UniformGrid x:Name="GameGrid"
                                      Width="400"
                                      Height="400"
-                                     Background="{DynamicResource GridBackgroundColor}">
+                                     Background="{DynamicResource GridBackgroundColor}"
+                                     UseLayoutRounding="True"
+                                     >
                                 
                         </UniformGrid>
                         
