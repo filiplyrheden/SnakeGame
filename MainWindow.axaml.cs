@@ -36,11 +36,16 @@ public partial class MainWindow : Window
             return;
         }
 
-        Overlay.IsVisible = false;
+        Overlay.IsVisible = true;
+        OverlayText.Text = "";
         this.Focus();
         Draw();
 
         await Task.Yield(); 
+        await ShowCountDown();
+
+        Overlay.IsVisible = false;
+
         await GameLoop();
     }
 
@@ -142,6 +147,16 @@ public partial class MainWindow : Window
                 GridValue gridVal = gameState.Grid[r, c];
                 gridImages[r, c].Source = gridValToImage[gridVal];
             }
+        }
+
+    
+    }
+    private async Task ShowCountDown()
+    {
+        for (int i = 3; i >= 1; i--)
+        {
+            OverlayText.Text = i.ToString();
+            await Task.Delay(500);
         }
     }
 }
