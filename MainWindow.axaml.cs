@@ -29,6 +29,11 @@ public partial class MainWindow : Window
 
     private async void Window_Opened(object? sender, EventArgs e)
     {
+        if (Design.IsDesignMode)
+        {
+            return;
+        }
+
         this.Focus();
         Draw();
         await GameLoop();
@@ -60,6 +65,11 @@ public partial class MainWindow : Window
 
     private async Task GameLoop()
     {
+        if (Design.IsDesignMode || gameState == null)
+        {
+            return;
+        }
+
         while (!gameState.GameOver)
         {
             await Task.Delay(100);
@@ -93,6 +103,11 @@ public partial class MainWindow : Window
 
     private void Draw()
     {
+        if (Design.IsDesignMode || gameState == null)
+        {
+            return;
+        }
+
         DrawGrid();
         ScoreText.Text = $"SCORE: {gameState.Score}";
     }
