@@ -12,7 +12,9 @@ cd SnakeGame
 dotnet run
 ```
 
+
 Or open it in JetBrains Rider, VS Code, or Visual Studio and press Run.
+
 
 🕹️ Controls
 | Key | Action |
