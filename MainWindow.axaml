@@ -11,7 +11,6 @@
         FontFamily="{DynamicResource MainFont}"
         WindowStartupLocation="CenterScreen"
         Icon="Assets/icon.ico"
-        Opened="Window_Opened"
         KeyDown="Window_KeyDown">
 <Viewbox>
         <Grid>
@@ -46,7 +45,24 @@
                         </UniformGrid>
                         
                 </Border>
-        
+                
+        <Border x:Name="Overlay"
+                Grid.Row="1"
+                Background="{DynamicResource OverlayColor}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Margin="{Binding Margin, ElementName=GridBorder}"
+                UseLayoutRounding="True">
+                <TextBlock x:Name="OverlayText"
+                           Text="PRESS ANY KEY TO START"
+                           FontSize="26"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           />
+                
+        </Border>
+                
         </Grid>
 </Viewbox>
 </Window>
