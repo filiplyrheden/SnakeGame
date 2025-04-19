@@ -47,6 +47,8 @@ public partial class MainWindow : Window
         Overlay.IsVisible = false;
 
         await GameLoop();
+        await ShowGameOver();
+        gameState = new GameState(rows, cols);
     }
 
     private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -158,5 +160,12 @@ public partial class MainWindow : Window
             OverlayText.Text = i.ToString();
             await Task.Delay(500);
         }
+    }
+
+    private async Task ShowGameOver()
+    {
+        await Task.Delay(1000);
+        Overlay.IsVisible = true;
+        OverlayText.Text = "PRESS ANY KEY TO START";
     }
 }
