@@ -5,6 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="SnakeGame.MainWindow"
         Title="SnakeGame" Height="500" Width="800"
+        MinWidth="300" MinHeight="300"
         Background="{DynamicResource BackgroundColor}"
         Foreground="{DynamicResource TextColor}"
         FontFamily="{DynamicResource MainFont}"
@@ -12,7 +13,7 @@
         Icon="Assets/icon.ico"
         Opened="Window_Opened"
         KeyDown="Window_KeyDown">
-
+<Viewbox>
         <Grid>
                 <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -32,7 +33,8 @@
                         BorderBrush="{DynamicResource GridLineColor}"
                         BorderThickness="1.5"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        Margin="20, 0, 20, 20">
                         
                         <UniformGrid x:Name="GameGrid"
                                      Width="400"
@@ -46,4 +48,5 @@
                 </Border>
         
         </Grid>
+</Viewbox>
 </Window>
