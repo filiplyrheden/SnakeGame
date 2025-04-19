@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -125,8 +127,8 @@ public partial class MainWindow : Window
             {
                 Image image = new Image
                 {
-                    Source = Images.Empty
-                };
+                    Source = Images.Empty,
+                    RenderTransformOrigin = new RelativePoint(0.5, 0.5, RelativeUnit.Relative)                };
                 
                 images[r, c] = image;
                 GameGrid.Children.Add(image);
@@ -157,6 +159,7 @@ public partial class MainWindow : Window
             {
                 GridValue gridVal = gameState.Grid[r, c];
                 gridImages[r, c].Source = gridValToImage[gridVal];
+                gridImages[r, c].RenderTransform = null;
             }
         }
     }
