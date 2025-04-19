@@ -20,23 +20,44 @@ public partial class MainWindow : Window
     private readonly int rows = 15, cols = 15;
     private readonly Image[,] gridImages;
     private GameState gameState;
+    private bool gameRunning;
     public MainWindow()
     {
         InitializeComponent();
         gridImages = SetupGrid();
         gameState = new GameState(rows, cols);
+        this.AddHandler(KeyDownEvent, Window_PreviewKeyDown, RoutingStrategies.Tunnel);
     }
 
-    private async void Window_Opened(object? sender, EventArgs e)
+    private async Task RunGame()
     {
         if (Design.IsDesignMode)
         {
             return;
         }
 
+        Overlay.IsVisible = false;
         this.Focus();
         Draw();
+
+        await Task.Yield(); 
         await GameLoop();
+    }
+
+    private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (!gameRunning)
+        {
+            gameRunning = true;
+            await RunGame();
+            gameRunning = false;
+            return;
+        }
+
+        if (Overlay.IsVisible)
+        {
+            e.Handled = true;
+        }
     }
 
     private void Window_KeyDown(object? sender, KeyEventArgs e)
