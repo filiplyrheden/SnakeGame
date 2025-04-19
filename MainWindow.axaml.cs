@@ -110,7 +110,7 @@ public partial class MainWindow : Window
 
         while (!gameState.GameOver)
         {
-            await Task.Delay(100);
+            await Task.Delay(150);
             gameState.Move();
             Draw();
         }
