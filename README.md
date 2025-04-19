@@ -17,5 +17,5 @@ Or open it in JetBrains Rider, VS Code, or Visual Studio and press Run.
 🕹️ Controls
 | Key | Action |
 | -------- | ------- |
-| â† â†‘ â†“ â†’ | Change direction |
+| Arrow keys| Change direction |
 | Any key | Start game |
